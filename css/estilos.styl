@@ -1,0 +1,371 @@
+body
+	background #C8D7DC
+	color #0B37B0;
+	font-family "Tahoma"
+	font-weight bold
+	margin 0
+
+input[type=text], input[type=password], input[type=file], select
+	background:#ECF0F3;
+	border:0.1em solid #0033AB;
+	border-radius: 4px;
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;	
+	color:#0070A3;
+	font-size:0.9em;
+	margin-bottom:4px;
+	padding:2px;
+	width: 150px;
+
+input[type=text]:focus, input[type=file]:focus, textarea:focus, select:focus, input[type=password]:focus
+	background:#F7F3EA;
+	border:1px solid #930;
+
+select
+	cursor:pointer;
+
+table, td, th
+	border: 1px solid black;
+
+textarea
+	background:#ECF0F3;
+	border:1px solid #0033AB;
+	border-radius: 4px;
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
+	color:#0070A3;
+	height: 70px;
+	margin-bottom:4px;
+	width: 450px;
+
+#contenido
+	background: #FFFFFF;
+	border-radius: 10px 10px 10px 10px;
+	box-shadow 0 6px 12px rgba(0,0,0,.25)
+	-webkit-box-shadow 0 6px 12px rgba(0,0,0,.25)
+	-moz-box-shadow 0 6px 12px rgba(0,0,0,.25)
+	font-size 14px
+	height auto
+	margin 10px
+	min-height 160px
+	min-width 30em
+	padding 1.5em
+	padding-bottom 2.5em
+	position relative
+
+#ciudad
+	width: 15em;
+
+#footer
+	color:#0033AB;
+	margin:10 auto;
+
+#form
+
+	input[type=file]
+		width:500px;
+		-moz-width:500px
+
+#informes
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-box-shadow: 0px 0px 15px #000000;
+	-webkit-box-shadow: 0px 0px 15px #000000;
+	box-shadow: 0px 0px 15px #000000;
+	margin: 5px;
+	padding: 10px;
+
+#logo
+	background url("../img/logo.jpg") no-repeat;
+	float left
+	height 94px
+	margin-bottom 10px
+	margin-left 10px
+	margin-top 10px
+	width 249px
+
+/*Define las características de la barra de menu*/
+#menu
+	background:#272CA5;
+	border-radius: 5px 5px 5px 5px;
+	box-shadow: 0 6px 12px rgba(0,0,0,.25);
+	float:left;
+	height:45px;
+	width:960px;
+	
+	/*Define cada una de las opciones del menú principal*/
+	ul
+		list-style:none;
+		margin:0px; 
+		padding:0px; 
+		position:absolute;
+		z-index:10;
+		
+		/*Define cada una de las opciones del menú principal*/
+		li
+			float:left; 
+			position: relative; 
+			text-align:center;
+			width:192px;
+			
+			/*Define la fuente de las opciones del menú principal*/
+			a
+				color:#FFFFFF; 
+				display:block; 
+				font-family:Tahoma;
+				font-size:14px; 
+				font-weight:bold;
+				margin-top: 5px;	
+				text-decoration:none;
+
+				/*Define la sombra de las opciones del menú principal*/
+				span
+					display:block; 
+					height:40px;
+					line-height:33px;
+
+			a:hover
+				color:#e8fffa; 
+				font-weight:bold;
+
+			ul
+				display:none;
+
+			ul.menuDrpDwn, ul.menuDrpDwn ul
+				background-color:#fefefe; 
+				border: solid 1px #c8c8c8; 
+				-moz-box-shadow:2px 2px 5px #d6d6d6; 
+				-webkit-box-shadow:2px 2px 5px #d6d6d6; 
+				box-shadow:2px 2px 5px #d6d6d6;
+				left:0; top:45px; 
+				position:absolute; 
+				width:190px;
+
+			ul.menuDrpDwn
+
+				/*Define el color que tendra cada opcion del submenu al pasar el mouse*/
+				a:hover
+					background:#ddecf3; 
+					border:dotted 1px #a8d8eb;
+					color:#fff; 
+					font-weight:bold; 
+
+				/*Define las opciones desplegadas de los submenu(Nivel 3)*/
+				li a
+					color:#767676; 
+					display:block; 
+					font:normal 11px 'Tahoma', 'Arial', 'Helvetica', 'sans-serif'; 
+					height:25px; 
+					line-height:25px; 
+					text-indent:15px;
+
+				li, ul li
+					text-align:left; 
+					float:none; 
+					display:block; 
+					width:190px;
+
+				li.selected
+					background:#ddecf3; 
+					-moz-box-shadow:none; 
+					-webkit-box-shadow:none;
+					box-shadow:none;	
+					font-weight:bold; 
+
+					> a
+						border:dotted 1px #a8d8eb;
+						color:#333333; 
+						font-weight:bold;
+				
+				ul
+					left:100%; 
+					position:absolute; 
+					top:0px;
+				
+		li.selected
+			color:red; 
+			font-weight:bold; 
+			-moz-box-shadow:2px 2px 5px #d6d6d6; 
+			-webkit-box-shadow:2px 2px 5px #d6d6d6; 
+			box-shadow:2px 2px 5px #d6d6d6;
+			
+			/*Define el color que obtendrá al poner el cursos sobre cada opcion principal*/
+			a
+				color:#fff;
+/*Fin menu*/
+
+#menu-left
+	width:5px 
+	height:3px 
+	float:left
+
+/*Define el menú a la derecha*/
+#menu-right
+	float:left;
+	height:33px; 
+	width:4px;
+
+#polizas
+	font-size 14px
+	width 100%
+	
+	th
+		background #B4C4F9
+		border 1px solid white
+		font-weight: bold
+		padding 2px
+		text-align center
+		vertical-align: middle
+
+	tr
+		td
+			border 1px solid #B4C4F9
+			color black
+			padding 5px
+
+	.numero
+		text-align right
+
+	.vigencia
+		width 60px
+
+#titulo_logo
+	color: #1C2352;
+	font-size: 2.7em;
+	line-height:0.9em;
+	margin-left: 600px;
+	margin-top: 20px;
+	text-align: center;
+	text-shadow: gray 2px 2px 5px;
+
+#titulo_usuario
+	font-size 20px
+	margin-top 5px
+	text-align center
+
+/*Mensajes de exito, informacion y error*/
+.alerta, .errores, .exito, .info 
+	background-position: 10px center;
+	background-repeat: no-repeat;
+	border: 1px solid
+	border-radius: 10px 10px 10px 10px;
+	box-shadow: 0 6px 12px rgba(0,0,0,.25);
+	-webkit-box-shadow: 0 6px 12px rgba(0,0,0,.25);
+	-moz-box-shadow: 0 6px 12px rgba(0,0,0,.25);
+	font-family:"Tahoma"; 
+	font-size:13px;
+	font-weight:bold;
+	margin-left: 265px;
+	margin-top: 35px;
+	padding:15px 10px 15px 50px;
+	position:absolute;
+	text-align: center;
+	width:  330px;
+
+.alerta
+	color: #9F6000;
+	background-color: #FEEFB3;
+	background-image: url('../img/iconos_alertas/alerta.png');
+
+.center
+	text-align center
+
+.clear
+	clear both
+
+.contenedor_fechas
+	border:1px solid #0033AB;
+	border-radius: 3px 3px 3px 3px;
+	height:auto;
+	margin: 5px;
+	padding: 5px;
+	position: relative;
+	width: auto;
+
+.error
+	color: #E13300;
+	font-size: 0.8em;
+
+.errores
+	color: #D8000C;
+	background-color: #FFBABA;
+	background-image: url('../img/iconos_alertas/error.png');
+
+.exito
+	color: #4F8A10;
+	background-color: #DFF2BF;
+	background-image: url('../img/iconos_alertas/exito.png');
+
+.fieldset
+	border:#4F8A10 ;
+	border-top:1px solid #74B2E2;
+	font-size: 1em;
+	font-weight: bold;
+	margin-top: 25px;
+	padding:10px;
+	text-align:right;
+
+.info
+	color: #00529B;
+	background-color: #BDE5F8;
+	background-image: url('../img/iconos_alertas/info.png');
+
+.right
+	text-align right
+
+.titulos_formularios
+	color: blue;
+	font-size:1.3em;
+	font-weight:bold;
+	text-align: left;
+
+/*Estilo para hallar la ciudad por medio de autocomplete*/
+.ui-autocomplete-loading
+	background: white url('../img/cargando.gif') right center no-repeat;
+
+.ver
+	margin-bottom: 15px
+
+	.info_contrato
+		background #F2F5FF
+		margin-bottom: 10px
+		padding 0
+
+		div
+			display inline-block
+			min-width 45%
+			text-align left
+			padding-left: 5px
+			padding-right: 5px
+
+		h3
+			background #B4C4F9
+			font-weight: bold
+			text-align center
+
+		h4, p
+			display inline
+			font-weight: normal
+
+		p
+			color black
+
+	.adiciones
+		border: 1px solid #B4C4F9
+		padding 0
+
+		table
+			margin 0 auto
+
+		table th, tr
+			border: 1px solid #B4C4F9
+			padding 5px
+
+		table td
+			border: 1px solid #B4C4F9
+			padding-left 5px
+			padding-right: 5px;
+	
+		table th
+			text-align: center

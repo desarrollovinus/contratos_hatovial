@@ -1,0 +1,1 @@
+El valor total ejecutado se tomó de conformidad con el Acta de Recibo Definitivo de fecha {FECHA_VENCIMIENTO}, suscrita por los ingenieros CARLOS PRECIADO de Hatovial y {REPRESENTANTE_LEGAL} quien obra a nombre de {CONTRATISTA}
