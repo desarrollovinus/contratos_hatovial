@@ -17,11 +17,11 @@ if ( ! defined('BASEPATH')) exit('Lo sentimos, usted no tiene acceso a esta ruta
  */
 Class Informes extends CI_Controller{
 	/**
-    * Funci&oacute;n constructora de la clase informes. 
-    * 
-    * Se hereda el mismo constructor de la clase Controller para evitar sobreescribirlo y de esa manera 
+    * Funci&oacute;n constructora de la clase informes.
+    *
+    * Se hereda el mismo constructor de la clase Controller para evitar sobreescribirlo y de esa manera
     * conservar el funcionamiento de controlador.
-    * 
+    *
     * @access	public
     */
     function __construct() {
@@ -45,7 +45,7 @@ Class Informes extends CI_Controller{
 
     /**
      * Muestra la vista principal del m&oacute;dulo informes.
-     * 
+     *
      * @access	public
      */
     function index(){
@@ -80,7 +80,7 @@ Class Informes extends CI_Controller{
     function acta_recibo(){
         //Se usa el modelo para la acci&oacute;n de auditor&iacute;a
         $this->auditoria_model->generar_acta_recibo($this->uri->segment(3));
-        
+
         //Se carga la vista que contiene el reporte
         $this->load->view('informes/informes/acta_recibo');
     } // acta_recibo
@@ -96,7 +96,7 @@ Class Informes extends CI_Controller{
 
         //Nombre genérico
         $this->data['nombre'] = "TODOS LOS CONTRATISTAS";
-            
+
         //Si viene id de contratista
         if ($id_contratista != "") {
             //Consulta de datos del contratista
@@ -124,7 +124,7 @@ Class Informes extends CI_Controller{
 
         //Nombre genérico
         $this->data['nombre'] = "TODOS LOS CONTRATANTES";
-            
+
         //Si viene id de contratantes
         if ($id_contratante != "") {
             //Consulta de datos del contratantes
@@ -152,7 +152,7 @@ Class Informes extends CI_Controller{
 
         //Nombre genérico
         $this->data['nombre'] = "TODOS LOS CONTRATISTAS";
-            
+
         //Si viene id de contratista
         if ($id_contratista != "") {
             //Consulta de datos del contratista
@@ -201,7 +201,7 @@ Class Informes extends CI_Controller{
 
     /**
      * Exporta a excel el listado de contratos seg&uacute;n el estado seleccionado.
-     * 
+     *
      * @access	public
      */
     function estados(){
@@ -216,10 +216,10 @@ Class Informes extends CI_Controller{
             $this->load->view('informes/informes/estados');
         }
     }//Fin estados()
-    
+
     /**
      * Exporta a excel el listado de contratos seg&uacute;n el rango de fechas seleccionado.
-     * 
+     *
      * @access	public
      */
     function fecha_inicial(){
@@ -236,10 +236,10 @@ Class Informes extends CI_Controller{
             $this->load->view('informes/informes/fecha_inicio');
         }
     }//Fin fecha_inicial()
-    
+
     /**
      * Exporta a excel el listado de contratos seg&uacute;n el rango de fechas seleccionado.
-     * 
+     *
      * @access	public
      */
     function fecha_vencimiento(){
@@ -256,16 +256,26 @@ Class Informes extends CI_Controller{
             $this->load->view('informes/informes/fecha_vencimiento');
         }
     }//Fin fecha_vencimiento()
-    
+
     /**
      * Exporta a excel el listado de contratos seg&uacute;n el rango de fechas seleccionado.
-     * 
+     *
      * @access	public
      */
     function no_acta_inicio(){
         //Se carga la vista que contiene el informe
         $this->load->view('informes/informes/no_acta_inicio');
     }//Fin no_acta_inicio
+
+	function pagos() {
+		$this->data['id_contrato'] = $this->uri->segment(3);
+		$id_contrato = $this->uri->segment(3);
+		//Se traen los pagos existentes de ese contrato
+		$this->data['pagos'] = $this->pago_model->listar_pagos($id_contrato);
+		//Se obtiene el modelo del estado de los pagos de ese contrato
+		$this->data['estado_pagos'] = $this->pago_model->estado_pagos_contrato($id_contrato);
+		$this->load->view('informes/informes/pagos', $this->data);
+	}
 }//Fin informes
 
 /**

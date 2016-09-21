@@ -124,7 +124,7 @@ $icono_pdf = base_url('img/icono_pdf.png');
                          */
                         echo form_fieldset('Sin acta de inicio', $fieldset);
                         echo form_fieldset_close();
-                        
+
                         //Formulario informe 3
                         echo form_open('informes/no_acta_inicio');
                         ?>
@@ -187,6 +187,41 @@ $icono_pdf = base_url('img/icono_pdf.png');
                             <tr>
                                 <?php echo form_close();?>
                             </tr>
+                        </table>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div id="informes">
+                        <table width="100%">
+                            <?php
+                            echo form_fieldset('Pagos', $fieldset);
+                            echo form_fieldset_close();
+
+                            $_contratista = array('' => 'TODOS');
+                            //Recorrido para traer todos los estados de la base de datos y agregarlos en el dropdown
+                            foreach($contratistas as $contratista):
+                                $_contratista[$contratista->Pk_Id_Terceros] = $contratista->Nombre;
+                            endforeach;
+                            ?>
+                            <tr>
+                                <td><?php echo form_label('Seleccione el contratista', 'id_contratista'); ?></td>
+                                <td rowspan="2">
+                                    <?php
+                                    /*
+                                     * Informe Excel - Por contratista
+                                     */
+                                    echo form_open('informes/contratistas_excel');
+                                    // echo form_hidden('id_contratista', $contratista->Pk_Id_Terceros);
+                                    echo form_submit(array( 'type' => 'image', 'src' => $icono, 'target' => 'blank'));
+                                    ?>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><?php echo form_dropdown('id_contratista', $_contratista); ?></td>
+                            </tr>
+                            <?php echo form_close(); ?>
                         </table>
                     </div>
                 </td>
