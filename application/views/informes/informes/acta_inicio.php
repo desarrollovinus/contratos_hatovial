@@ -65,7 +65,7 @@ $PHPWord->addTableStyle('tabla1', $tabla1);
 $cabecera = $seccion1->createHeader();
 $table = $cabecera->addTable('tabla1');
 $table->addRow(1300);
-$table->addCell(4000, $styleCell)->addText('COCAN 900.193.471-9', 'titulo1', $alineacion_centrada);
+$table->addCell(4000, $styleCell)->addText('COCAN 900.133.471-9', 'titulo1', $alineacion_centrada);
 $table->addCell(10000, $styleCell)->addText('ACTA DE INICIO DE OBRA', 'titulo2', $alineacion_centrada);
 $cabecera->addTextBreak();
 
