@@ -57,6 +57,8 @@ Class Informes extends CI_Controller{
         $this->data['contratantes'] = $this->tercero_model->listar_contratantes();
         //se establece el titulo de la p&aacute;gina
         $this->data['titulo'] = 'Informes';
+		// listado de contratos
+		$this->data['contratos'] = $this->contrato_model->listar_contratos('');
         //se establece la vista que tiene el contenido principal
         $this->data['contenido_principal'] = 'informes/informes_view';
         //se carga el template
@@ -268,8 +270,20 @@ Class Informes extends CI_Controller{
     }//Fin no_acta_inicio
 
 	function pagos() {
-		$this->data['id_contrato'] = $this->uri->segment(3);
-		$id_contrato = $this->uri->segment(3);
+		if ($this->uri->segment(3) == '') {
+			$this->data['id_contrato'] = $this->input->post('id_contrato');
+			$this->form_validation->set_rules('id_contrato', 'Contrato', 'required|trim');
+			$this->form_validation->set_message('required', '-%s no puede estar vac&iacute;o');
+			if($this->form_validation->run() == false){
+				//Se imprime el mensaje de informaci&oacute;n
+				$this->data['mensaje_alerta'] = "Es necesario que seleccione un contrato<br/>para poder generar el informe";
+				$this->index();
+				return 0;
+			}
+		} else {
+			$this->data['id_contrato'] = $this->uri->segment(3);
+		}
+		$id_contrato = $this->data['id_contrato'];
 		//Se traen los pagos existentes de ese contrato
 		$this->data['pagos'] = $this->pago_model->listar_pagos($id_contrato);
 		//Se obtiene el modelo del estado de los pagos de ese contrato

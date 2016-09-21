@@ -199,27 +199,27 @@ $icono_pdf = base_url('img/icono_pdf.png');
                             echo form_fieldset('Pagos', $fieldset);
                             echo form_fieldset_close();
 
-                            $_contratista = array('' => 'TODOS');
+                            $_contrato = array('' => '');
                             //Recorrido para traer todos los estados de la base de datos y agregarlos en el dropdown
-                            foreach($contratistas as $contratista):
-                                $_contratista[$contratista->Pk_Id_Terceros] = $contratista->Nombre;
+                            foreach($contratos as $contrato):
+                                $_contrato[$contrato->Pk_Id_Contrato] = $contrato->Numero;
                             endforeach;
                             ?>
                             <tr>
-                                <td><?php echo form_label('Seleccione el contratista', 'id_contratista'); ?></td>
+                                <td><?php echo form_label('Seleccione contrato', 'id_contrato'); ?></td>
                                 <td rowspan="2">
                                     <?php
                                     /*
-                                     * Informe Excel - Por contratista
+                                     * Informe Excel - Pagos
                                      */
-                                    echo form_open('informes/contratistas_excel');
+                                    echo form_open('informes/pagos');
                                     // echo form_hidden('id_contratista', $contratista->Pk_Id_Terceros);
                                     echo form_submit(array( 'type' => 'image', 'src' => $icono, 'target' => 'blank'));
                                     ?>
                                 </td>
                             </tr>
                             <tr>
-                                <td><?php echo form_dropdown('id_contratista', $_contratista); ?></td>
+                                <td><?php echo form_dropdown('id_contrato', $_contrato); ?></td>
                             </tr>
                             <?php echo form_close(); ?>
                         </table>

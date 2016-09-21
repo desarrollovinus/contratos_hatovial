@@ -62,6 +62,12 @@ $titulo_derecho = array(
     )
 );
 
+$alineacion_izquierda = array(
+    'alignment' => array(
+        'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_LEFT
+    )
+);
+
 //Estilo de los bordes
 $bordes = array(
     'borders' => array(
@@ -131,17 +137,20 @@ $hoja->setCellValue("C{$fila}", 'Valor');
 $hoja->setCellValue("D{$fila}", 'Retenido');
 $fila++;
 
+$fila_inicio = $fila;
 foreach ($pagos as $pago) {
     $objPHPExcel->getActiveSheet()->getStyle("C{$fila}:D{$fila}")
     ->getNumberFormat()
     ->setFormatCode('$ * ###,###,###,###');
     $hoja->getStyle("A{$fila}:D{$fila}")->applyFromArray($bordes);
+    $hoja->getStyle("B{$fila}")->applyFromArray($alineacion_izquierda);
     $hoja->setCellValue("A{$fila}", substr($pago->Fecha, 8, 2)."-".substr($pago->Fecha, 5, 2)."-".substr($pago->Fecha, 0, 4));
     $hoja->setCellValue("B{$fila}", $pago->Numero_Acta);
     $hoja->setCellValue("C{$fila}", $pago->Valor_Pago);
     $hoja->setCellValue("D{$fila}", $pago->Valor_Retenido);
     $fila++;
 }
+$fila_fin = $fila - 1;
 
 $hoja->getRowDimension($fila)->setRowHeight(7);
 $fila++;
@@ -152,36 +161,41 @@ $objPHPExcel->getActiveSheet()->getStyle("B{$fila}:D{$fila_aux}")
 ->setFormatCode('$ * ###,###,###,###');
 $hoja->getStyle("A{$fila}:D{$fila_aux}")->applyFromArray($derecha_negrita);
 
+$valor = $estado_pagos[0]->Valor_Inicial + $estado_pagos[0]->Valor_Adiciones;
 $hoja->mergeCells("B{$fila}:C{$fila}");
 $hoja->setCellValue("B{$fila}", "Valor (incluidas adiciones)");
-$hoja->setCellValue("D{$fila}", $estado_pagos[0]->Valor_Inicial);
+$hoja->setCellValue("D{$fila}", $valor);
 $fila_Valor_Inicial = $fila;
 $fila++;
 
 
 $hoja->mergeCells("B{$fila}:C{$fila}");
 $hoja->setCellValue("B{$fila}", "Total pagado");
-$hoja->setCellValue("D{$fila}", $estado_pagos[0]->Pagado);
+$hoja->setCellValue("D{$fila}", "=SUM(C{$fila_inicio}:C{$fila_fin})");
 $fila_Pagado = $fila;
 $fila++;
 
 
 $hoja->mergeCells("B{$fila}:C{$fila}");
 $hoja->setCellValue("B{$fila}", "Saldo");
-$hoja->setCellValue("D{$fila}", "=SUM(D{$fila_Valor_Inicial}:D{$fila_Pagado})");
-$hoja->setCellValue("D{$fila}", $estado_pagos[0]->Valor_Inicial - $estado_pagos[0]->Pagado);
-
+$hoja->setCellValue("D{$fila}", "=(D{$fila_Valor_Inicial}-D{$fila_Pagado})");
 $fila++;
 
 $hoja->mergeCells("B{$fila}:C{$fila}");
 $hoja->setCellValue("B{$fila}", "Total retenido");
-$hoja->setCellValue("D{$fila}", $estado_pagos[0]->Valor_Retenido);
+$hoja->setCellValue("D{$fila}", "=SUM(D{$fila_inicio}:D{$fila_fin})");
 $fila++;
 
+$hoja->getStyle("D{$fila}")
+    ->getNumberFormat()->applyFromArray(
+        array(
+            'code' => PHPExcel_Style_NumberFormat::FORMAT_PERCENTAGE_00
+        )
+    );
 $hoja->getStyle("A{$fila}:D{$fila}")->applyFromArray($derecha_negrita);
 $hoja->mergeCells("B{$fila}:C{$fila}");
 $hoja->setCellValue("B{$fila}", "Porcentaje");
-$hoja->setCellValue("D{$fila}", number_format($estado_pagos[0]->Porcentaje, 2, '.', '').'%');
+$hoja->setCellValue("D{$fila}", "=(D{$fila_Pagado}/D{$fila_Valor_Inicial})");
 
 //
 // Se modifican los encabezados del HTTP para indicar que se envia un archivo de Excel. SUMA(D12;-D13)
