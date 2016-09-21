@@ -124,7 +124,7 @@ $icono_pdf = base_url('img/icono_pdf.png');
                          */
                         echo form_fieldset('Sin acta de inicio', $fieldset);
                         echo form_fieldset_close();
-                        
+
                         //Formulario informe 3
                         echo form_open('informes/no_acta_inicio');
                         ?>
@@ -187,6 +187,41 @@ $icono_pdf = base_url('img/icono_pdf.png');
                             <tr>
                                 <?php echo form_close();?>
                             </tr>
+                        </table>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div id="informes">
+                        <table width="100%">
+                            <?php
+                            echo form_fieldset('Pagos', $fieldset);
+                            echo form_fieldset_close();
+
+                            $_contrato = array('' => '');
+                            //Recorrido para traer todos los estados de la base de datos y agregarlos en el dropdown
+                            foreach($contratos as $contrato):
+                                $_contrato[$contrato->Pk_Id_Contrato] = $contrato->Numero;
+                            endforeach;
+                            ?>
+                            <tr>
+                                <td><?php echo form_label('Seleccione contrato', 'id_contrato'); ?></td>
+                                <td rowspan="2">
+                                    <?php
+                                    /*
+                                     * Informe Excel - Pagos
+                                     */
+                                    echo form_open('informes/pagos');
+                                    // echo form_hidden('id_contratista', $contratista->Pk_Id_Terceros);
+                                    echo form_submit(array( 'type' => 'image', 'src' => $icono, 'target' => 'blank'));
+                                    ?>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><?php echo form_dropdown('id_contrato', $_contrato); ?></td>
+                            </tr>
+                            <?php echo form_close(); ?>
                         </table>
                     </div>
                 </td>

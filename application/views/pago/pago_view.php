@@ -71,6 +71,9 @@ echo form_hidden('id_contrato', $id_contrato);
                     echo form_submit(array('id' => 'guardar', 'name' => 'guardar'), 'Generar pago');
                     echo form_input(array('type' => 'button', 'name' => 'volver', 'id' => 'volver', 'value' => 'Regresar', 'onclick'=> 'history.back()'));
                     ?>
+                    <a href="<?= site_url('informes/pagos/'.$id_contrato); ?>">
+                        <input style="background:#8BC34A;" type="button" value="Generar excel">
+                    </a>
                 </div>
             </td>
         </tr>
