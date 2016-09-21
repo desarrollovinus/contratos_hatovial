@@ -182,8 +182,8 @@ Class Contrato_model extends CI_Model{
         INNER JOIN tbl_terceros ON c.Fk_Id_Terceros = tbl_terceros.Pk_Id_Terceros
         INNER JOIN tbl_estados ON c.Fk_Id_Estado = tbl_estados.Pk_Id_Estado
         LEFT JOIN tbl_terceros AS t ON c.Fk_Id_Terceros_Contratante = t.Pk_Id_Terceros
-        ORDER BY c.Numero '.
-        $id_contrato;
+        '.$id_contrato.'
+        ORDER BY c.Numero';
         //Se retorna la consulta
         return $this->db->query($sql)->result();
     }//Fin listar_contratos
